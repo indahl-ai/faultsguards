@@ -2,6 +2,8 @@
 
 The Faults and Guards from Heuremen LLC as a Python package. Faults is the catalogue of failure modes a model commits doing measurement work. Guards is the set of procedures built against them. The PDFs are at https://heuremen.org/faults.pdf and https://heuremen.org/guards.pdf. The text is also a dataset at https://huggingface.co/datasets/indahl/faultsguards. This package makes the same text usable inside an LLM workflow: structured data, prompt and checklist builders, function-calling schemas, and an MCP server.
 
+Live page: https://indahl.ai/iris (the Faults and Guards bench and findings). Dataset: https://huggingface.co/datasets/indahl/faultsguards.
+
 Standard library only. It never calls a model and never touches the network. It builds text and returns it.
 
 ## Install
