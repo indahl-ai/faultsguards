@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 """verify_pdfs.py: the built PDFs must carry the same text as the published ones, ignoring spacing and line breaks (kerning splits some numbers when text is extracted), and the same page count.
 usage: verify_pdfs.py BUILD_DIR [PUBLISHED_DIR_OR_URL_PREFIX]   default prefix https://heuremen.org/"""
-import os, re, sys, tempfile, urllib.request
+import os, re, sys, tempfile, unicodedata, urllib.request
 import pypdf
-def txt(p): r = pypdf.PdfReader(p); return len(r.pages), re.sub(r'\s+', '', ''.join((pg.extract_text() or '') for pg in r.pages))
+def txt(p): r = pypdf.PdfReader(p); return len(r.pages), re.sub(r'\s+', '', unicodedata.normalize('NFKC', ''.join((pg.extract_text() or '') for pg in r.pages)))
 def main():
     b = sys.argv[1]; pub = sys.argv[2] if len(sys.argv) > 2 else 'https://heuremen.org/'; ok = True
     for f in ('faults.pdf', 'guards.pdf'):
